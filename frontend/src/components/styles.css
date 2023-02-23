@@ -1,0 +1,9 @@
+.img-in-carousel {
+    width: 600px;
+    height: 300px;
+}
+.title{
+    font-family: 'Tangerine', serif;
+        font-size: 48px;
+        text-shadow: 4px 4px 4px #aaa;
+}
