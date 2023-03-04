@@ -1,26 +1,23 @@
 const express = require('express')
 const router = express.Router()
+const {
+    getAllBookings,
+    getSingleBooking,
+    createBooking,
+    deleteBooking,
+    updateBooking
+} = require('../controllers/bookingsController')
 
 //user routes
-router.get('/',(req,res) => { // gets all bookings from the DB
-    res.json({mesg : 'Dummy responce from bookings GET'})
-})
+router.get('/',getAllBookings)
 
-router.get('/:id',(req,res) => { // gets a single user from the DB
-    res.json({mesg : 'Dummy responce from bookings GET :id'})
-})
+router.get('/:id',getSingleBooking)
 
-router.post('/',(req,res) => { // post a single new user
-    res.json({mesg : 'Dummy responce from bookings Post'})
-})
+router.post('/',createBooking)
 
-router.delete('/:id',(req,res) => { // delete a user by id
-    res.json({mesg : 'Dummy responce from bookings Delete :id'})
-})
+router.delete('/:id',deleteBooking)
 
-router.patch('/:id',(req,res) => { // post a single new user
-    res.json({mesg : 'Dummy responce from bookings Patch :id'})
-})
+router.patch('/:id',updateBooking)
 
 // passing the routes out for use in another express file
 module.exports = router
