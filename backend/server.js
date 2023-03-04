@@ -6,6 +6,8 @@ const app = express()
 //import of our routes
 const userRoutes = require('./routes/users') 
 const bookingRoutes = require('./routes/bookings')
+const testRoutes = require('./routes/test')
+const roomRoutes = require('./routes/rooms')
 
 //import mongoose
 const mongoose = require('mongoose')
@@ -26,18 +28,19 @@ app.use(express.json())
 // this just allows for a clean up the server file and have requests allocated to specific DB tables in their own .js file
 app.use('/users',userRoutes)
 app.use('/bookings',bookingRoutes)
+app.use('/test',testRoutes)
+app.use('/rooms',roomRoutes)
 
 // connect to the DB and begin listening for request if it connects
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         //listening port
-
         // process.env.PORT is a link to the .env file and the value is being pulled from it.
         app.listen(process.env.PORT,() => {
             console.log('Connected to DB and Listening on port ',process.env.PORT)
         })
     })
     .catch((error) => {
-        console.log("Error : " + error)
+        console.log("Error : " + error + " a silly little error")
     })
 
