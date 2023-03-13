@@ -26,10 +26,10 @@ app.use(express.json())
 
 // routes - these are imports from the users and bookings.js files
 // this just allows for a clean up the server file and have requests allocated to specific DB tables in their own .js file
-app.use('/users',userRoutes)
-app.use('/bookings',bookingRoutes)
-app.use('/test',testRoutes)
-app.use('/rooms',roomRoutes)
+app.use('/api/users',userRoutes)
+app.use('/api/bookings',bookingRoutes)
+app.use('/api/test',testRoutes)
+app.use('/api/rooms',roomRoutes)
 
 // connect to the DB and begin listening for request if it connects
 mongoose.connect(process.env.MONGO_URI)

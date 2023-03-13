@@ -16,12 +16,6 @@
 
 .row {
     display: flex;
-    max-width: 1200px;
-    flex-wrap: wrap;
-}
-
-.footerRow{
-    display: flex;
-    max-width: 100%;
+    max-width: auto;
     flex-wrap: wrap;
 }
