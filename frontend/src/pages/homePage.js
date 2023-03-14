@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { HomeCarousel } from '../components/homeCarousel';
+import { Map } from "../components/map";
 
 export class Home extends React.Component {
     render() {
@@ -45,7 +46,10 @@ export class Home extends React.Component {
                         </Col>
                     </Row>
                 </Card>
+
+                <Map></Map>
             </div>
+            
         );
     }
 }
