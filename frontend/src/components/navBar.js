@@ -1,10 +1,11 @@
 import React from "react";
 import './styles.css';
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,6 +31,26 @@ export class NavBar extends React.Component {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
+                        <Container style={{textAlign: 'right'}}>
+                            <Form className="d-flex">
+                                <Form.Control
+                                  type="username"
+                                  placeholder="Username"
+                                  className="w-50"
+                                  aria-label="username"
+                                  maxLength='100'
+                                />
+                                <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                className="w-50"
+                                aria-label="password"
+                                maxLength='40'
+                                />
+                                <Button variant="outline-success">Search</Button>
+                            </Form>
+                            <a className="LoginCreateNew" href="CreateNewAccount">Create Account</a>
+                        </Container>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

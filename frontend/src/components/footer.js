@@ -34,7 +34,7 @@ export class Footer extends React.Component{
                                     <a href="/" className="text-white">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
+                                    <a href="CreateNewAccount" className="text-white">Create User</a>
                                 </li>
                                 <li>
                                     <a href="#!" className="text-white">Link 3</a>

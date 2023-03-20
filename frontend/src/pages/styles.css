@@ -19,3 +19,40 @@
     max-width: auto;
     flex-wrap: wrap;
 }
+.createControl{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    box-shadow: inset;
+    display: block;
+}
+.createLabel{
+    width:100%;
+    display: block;
+    text-align: left;
+    font-size: large;
+    color:deeppink
+}
+.createContainer{
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background-color:rgba(193, 195, 197, 0.452);
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 10px;
+}
+.createButton{
+    width: 1in;
+    height: 40px;
+    border-radius: 10px;
+    border-style:groove;
+    color: black;
+    font-size: large;
+    font-family: 'Tangerine', serif;
+    background-color: hotpink;
+}
