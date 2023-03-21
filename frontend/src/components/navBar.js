@@ -47,7 +47,7 @@ export class NavBar extends React.Component {
                                 aria-label="password"
                                 maxLength='40'
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button variant="outline-success"> Login </Button>
                             </Form>
                             <a className="LoginCreateNew" href="CreateNewAccount">Create Account</a>
                         </Container>
