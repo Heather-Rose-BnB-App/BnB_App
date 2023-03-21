@@ -14,11 +14,25 @@ const CreateNewUserForm = () => {
     const [phoneNumber , setPhoneNumber] = useState('');
 
     //listen for the form submit
-    
+    const OnSubmit = (e) => {
+        //keep page from reloading
+        e.preventDefault();
+
+        // wrap data into an object
+        const newUser = {firstName,lastName,email,password,phoneNumber}
+
+        // send post request
+        fetch('http://localhost:4000/api/users',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(newUser)
+            }
+        )
+    }
 
     return(
         <Container className="createContainer">
-            <Form className="createForm">
+            <Form className="createForm" onSubmit={OnSubmit}>
                 <Form.Label className="createLabel"> First Name </Form.Label>
                 <Form.Control
                     className="createControl"
