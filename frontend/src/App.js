@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Home } from './pages/homePage';
 import { Rooms } from './components/rooms';
 import { About } from './components/about';
+import {Gallery} from './/components/gallery';
 import { Header } from './components/header';
 import { NavBar } from './components/navBar'
 import { Footer } from './components/footer'
@@ -30,6 +31,7 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/rooms' element={<Rooms />}></Route>
           <Route path='/about' element={<About />}></Route>
+          <Route path='/gallery' element={<Gallery />}></Route>
           <Route path='/createNewAccount' element={<CreateNewAccount/>}></Route>
         </Routes>
         <br />
