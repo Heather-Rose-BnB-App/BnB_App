@@ -20,6 +20,7 @@ import { Header } from './components/header';
 import { NavBar } from './components/navBar'
 import { Footer } from './components/footer'
 import { CreateNewAccount} from './pages/createNewAccountPage'
+import { BookingPage } from './pages/bookingPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/rooms' element={<Rooms />}></Route>
           <Route path='/about' element={<About />}></Route>
           <Route path='/gallery' element={<Gallery />}></Route>
+          <Route path='/bookingPage' element={< BookingPage/>}></Route>
           <Route path='/createNewAccount' element={<CreateNewAccount/>}></Route>
         </Routes>
         <br />
