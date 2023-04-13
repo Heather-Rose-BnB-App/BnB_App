@@ -1,5 +1,5 @@
 import React from "react";
-import './styles.css';
+import './navbar.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,10 +9,12 @@ import Button from 'react-bootstrap/Button';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 export class NavBar extends React.Component {
     render() {
         return (
-            <Navbar bg="light" expand="sm" >
+            <Navbar bg="light" expand="sm" className="fixed-top">
                 <Container>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
