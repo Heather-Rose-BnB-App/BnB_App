@@ -9,6 +9,17 @@ const bookingRoutes = require('./routes/bookings')
 const testRoutes = require('./routes/test')
 const roomRoutes = require('./routes/rooms')
 
+//Allows access to other server.
+const cors = require('cors');
+    app.use(cors());
+    app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 //import mongoose
 const mongoose = require('mongoose')
 

@@ -21,6 +21,31 @@ const getSingleUser = async (req,res) => {
     else{res.status(200).json(user)}
 }
 
+//get single
+const getSingleUserByEmail = async (req,res) => {
+    const { email } = req.params
+    // check that the id is valid and if it is not return an error message
+    // if(!mongoose.Types.Email.isValid(email)){
+    //     return res.status(404).json({error: "No such User by email :"+ email})
+    // }
+    // id is valid now we search for the user
+    const user = await usersTable.find({$where: () => {
+        for(var key in this)
+        {
+            if(this[key] == email)
+            {
+                console.log(this)
+            }
+            else{
+
+            }
+        }
+    }})
+    //check if the user exists and only return them if they do
+    if(!user){return res.status(400).json({error: "No such user"})}
+    else{res.status(200).json(user)}
+}
+
 //create new
 const createUser = async(req,res) => {
     const {firstName,lastName,email,password,mobile,bookings} = req.body
@@ -71,6 +96,7 @@ const updateUser = async(req,res) => {
 module.exports = {
     getAllUsers,
     getSingleUser,
+    getSingleUserByEmail,
     createUser,
     deleteUser,
     updateUser

@@ -21,7 +21,9 @@ const schema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        match: /.+\@.+\..+/
     },
     password: {
         type: String,
@@ -29,7 +31,7 @@ const schema = mongoose.Schema({
     },
     mobile: {
         type: Number,
-        required: true
+        required: true,
     },
     bookings: {
         type: Array
