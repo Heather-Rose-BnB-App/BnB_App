@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavBar } from '../components/navBar'
 import './styles.css';
 
 const BookingForm = () => {
@@ -8,9 +9,11 @@ const BookingForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const verb = NavBar.state;
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(verb);
         // add your booking submission logic here
         alert('Booking submitted successfully!');
     };

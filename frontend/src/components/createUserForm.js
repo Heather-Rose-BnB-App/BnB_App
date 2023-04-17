@@ -12,7 +12,7 @@ const CreateNewUserForm = () => {
     const [password , setPassword] = useState('');
     const [mobile , setPhoneNumber] = useState('');
     const [error, setError] = useState(null);
-    const [newAccountCreated, setNewAccountCreated] = useState('false');
+    const [newAccountCreated, setNewAccountCreated] = useState;
 
     //listen for the form submit
     const OnSubmit = (e) => {

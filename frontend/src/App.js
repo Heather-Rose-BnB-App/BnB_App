@@ -21,12 +21,14 @@ import { NavBar } from './components/navBar'
 import { Footer } from './components/footer'
 import { CreateNewAccount} from './pages/createNewAccountPage'
 import { BookingPage } from './pages/bookingPage';
+//import NewNavBar from './components/nav';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header></Header>
+        {/* <NewNavBar></NewNavBar> */}
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Home />}></Route>
