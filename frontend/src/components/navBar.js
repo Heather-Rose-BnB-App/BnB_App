@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export class NavBar extends React.Component {
     constructor() {
         super();
+        const cookie = new Cookies();
         this.state = {
             username: '',
             password: '',
@@ -22,7 +23,15 @@ export class NavBar extends React.Component {
         let username = '';
         let password = '';
         let user = '';
-        let validLogin = false;
+        let validLogin;
+        if(cookie.get('user') != null)
+        {
+            console.log(cookie.get('user'));
+            this.state.user = cookie.get('user');
+            validLogin = true;
+        }
+        else
+            validLogin = false;
     }
 
     setPassword(evt) {
