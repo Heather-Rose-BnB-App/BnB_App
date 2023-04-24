@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export class NavBar extends React.Component {
     constructor(){
         super();
+        const cookie = new Cookies();
         this.state = {
             username : '',
             password : '',
@@ -22,7 +23,15 @@ export class NavBar extends React.Component {
         let username = '';
         let password = '';
         let user = '';
-        let validLogin = false;
+        let validLogin;
+        if(cookie.get('user') != null)
+        {
+            console.log(cookie.get('user'));
+            this.state.user = cookie.get('user');
+            validLogin = true;
+        }
+        else
+            validLogin = false;
     }
     
     setPassword(evt){
@@ -48,12 +57,13 @@ export class NavBar extends React.Component {
 
         if(this.state.user.password === this.password)
         {
+            this.cookie.set('user',this.state.user,{path: '/'});
             this.state.user = null;
             console.log("Valid Login")
             this.state.validLogin = true;
             this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
-            const cookie = new Cookies();
-            cookie.set('','',{});
+            
+            
         }
         else{
             this.state.user = null;
