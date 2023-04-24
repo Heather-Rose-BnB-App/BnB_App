@@ -11,51 +11,50 @@ import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class NavBar extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            username : '',
-            password : '',
-            validLogin : false,
-            user : null
+            username: '',
+            password: '',
+            validLogin: false,
+            user: null
         }
         let username = '';
         let password = '';
         let user = '';
         let validLogin = false;
     }
-    
-    setPassword(evt){
+
+    setPassword(evt) {
         this.state.password = evt.target.value;
         this.password = evt.target.value;
         //console.log('password updated : ' + this.password)
     }
-    setUsername(evt){
+    setUsername(evt) {
         this.state.username = evt.target.value;
         this.username = evt.target.value;
         //console.log('username updated : ' + this.username)
     }
-    async LoginUser(){
+    async LoginUser() {
         var json;
         // send post request          http://localhost:4000/api/users/login/:email
-        const response = await fetch('http://localhost:4000/api/users/login/'+this.username).
-        then((res) => res.json()).
-        then((data) => {
-            this.state.user = data[0]
-            //this.user = data[0]
-        }).
-        catch((err) => console.log(err))
+        const response = await fetch('http://localhost:4000/api/users/login/' + this.username).
+            then((res) => res.json()).
+            then((data) => {
+                this.state.user = data[0]
+                //this.user = data[0]
+            }).
+            catch((err) => console.log(err))
 
-        if(this.state.user.password === this.password)
-        {
+        if (this.state.user.password === this.password) {
             this.state.user = null;
             console.log("Valid Login")
             this.state.validLogin = true;
             this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
             const cookie = new Cookies();
-            cookie.set('','',{});
+            cookie.set('', '', {});
         }
-        else{
+        else {
             this.state.user = null;
             console.log("InValid Login")
             this.state.validLogin = false;
@@ -64,16 +63,15 @@ export class NavBar extends React.Component {
 
     render() {
         console.log("render call")
-        if(this.state.validLogin)
-        {
-            return(
+        if (this.state.validLogin) {
+            return (
                 <Navbar bg="light" expand="sm" className="fixed-top">
                     <Container>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                            <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Collapse id="basic-navbar-nav">
                             <Navbar.Brand href="#home">B&B</Navbar.Brand>
                             <Nav className="me-auto" fill variant="tabs">
-                                <Nav.Link  href="/">Home</Nav.Link>
+                                <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/about">About</Nav.Link>
                                 <Nav.Link href="/rooms">Rooms</Nav.Link>
                                 <Nav.Link href="/gallery">Gallery</Nav.Link>
@@ -81,7 +79,7 @@ export class NavBar extends React.Component {
                                 <NavDropdown title="More" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Policy</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">
+                                    <NavDropdown.Item href="/contactPage">
                                         Contact
                                     </NavDropdown.Item>
                                 </NavDropdown>
@@ -91,16 +89,15 @@ export class NavBar extends React.Component {
                 </Navbar>
             );
         }
-        else
-        {
+        else {
             return (
                 <Navbar bg="light" expand="sm" className="fixed-top">
                     <Container>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                            <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Collapse id="basic-navbar-nav">
                             <Navbar.Brand href="#home">B&B</Navbar.Brand>
                             <Nav className="me-auto" fill variant="tabs">
-                                <Nav.Link  href="/">Home</Nav.Link>
+                                <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/about">About</Nav.Link>
                                 <Nav.Link href="/rooms">Rooms</Nav.Link>
                                 <Nav.Link href="/gallery">Gallery</Nav.Link>
@@ -108,12 +105,12 @@ export class NavBar extends React.Component {
                                 <NavDropdown title="More" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Policy</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">
+                                    <NavDropdown.Item href="/contactPage">
                                         Contact
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
-                            <Container style={{textAlign: 'right'}}>
+                            <Container style={{ textAlign: 'right' }}>
                                 <Form className="d-flex">
                                     <Form.Control
                                         type="username"
@@ -133,7 +130,7 @@ export class NavBar extends React.Component {
                                         value={this.password}
                                         onChange={(e) => this.setPassword(e)}
                                     />
-                                    <Button variant="outline-success" type="button" onClick={ () => {this.LoginUser()}}> Login </Button>
+                                    <Button variant="outline-success" type="button" onClick={() => { this.LoginUser() }}> Login </Button>
                                 </Form>
                                 <a className="LoginCreateNew" href="CreateNewAccount">Create Account</a>
                             </Container>
