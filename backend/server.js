@@ -12,12 +12,12 @@ const userRoutes = require('./routes/users')
 const bookingRoutes = require('./routes/bookings')
 const testRoutes = require('./routes/test')
 const roomRoutes = require('./routes/rooms')
-const contactRoutes = require('./controllers/contactController')
+const contactRoutes = require('./routes/contact')
 
 //Allows access to other server.
 const cors = require('cors');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 app.use(cors());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -48,10 +48,10 @@ app.use('/api/users', userRoutes)
 app.use('/api/bookings', bookingRoutes)
 app.use('/api/test', testRoutes)
 app.use('/api/rooms', roomRoutes)
-app.use('/api/contact',contactRoutes)
+// app.use('/api/contact',contactRoutes)
 
 
-//test //this is all moved to the proper location and a routes antry has been made for it as well.
+//test //this is all moved to the proper location and a routes antry has been made for
 // app.post('/api/contact', (req, res) => {
 //     console.log('i am here now')
 //     // Get form data from request body
