@@ -48,7 +48,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/bookings', bookingRoutes)
 app.use('/api/test', testRoutes)
 app.use('/api/rooms', roomRoutes)
-// app.use('/api/contact',contactRoutes)
+app.use('/api/contact',contactRoutes)
 
 
 //test //this is all moved to the proper location and a routes antry has been made for
