@@ -52,22 +52,21 @@ export class NavBar extends React.Component {
             then((data) => {
                 this.state.user = data[0]
                 //this.user = data[0]
+                if (this.state.user.password === this.password) {
+                    this.state.user = null;
+                    console.log("Valid Login")
+                    this.state.validLogin = true;
+                    this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
+                    const cookie = new Cookies();
+                    cookie.set('', '', {});
+                }
+                else {
+                    this.state.user = null;
+                    console.log("InValid Login")
+                    this.state.validLogin = false;
+                }
             }).
             catch((err) => console.log(err))
-
-        if (this.state.user.password === this.password) {
-            this.state.user = null;
-            console.log("Valid Login")
-            this.state.validLogin = true;
-            this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
-            const cookie = new Cookies();
-            cookie.set('', '', {});
-        }
-        else {
-            this.state.user = null;
-            console.log("InValid Login")
-            this.state.validLogin = false;
-        }
     }
 
     render() {
