@@ -20,18 +20,14 @@ export class NavBar extends React.Component {
             validLogin: false,
             user: null
         }
-        let username = '';
-        let password = '';
-        let user = '';
-        let validLogin;
-        if(cookie.get('user') != null)
+        if(cookie.get('User') != null)
         {
             console.log(cookie.get('user'));
             this.state.user = cookie.get('user');
-            validLogin = true;
+            this.state.validLogin = true;
         }
         else
-            validLogin = false;
+            this.state.validLogin = false;
     }
 
     setPassword(evt) {
@@ -45,20 +41,31 @@ export class NavBar extends React.Component {
         //console.log('username updated : ' + this.username)
     }
     async LoginUser() {
+        const cookie = new Cookies();
         var json;
+        this.state.user = cookie.get('User')
+        if(this.state.user.email !== null)
+        {
+            console.log("Cookie still has user data")
+        }
+        else console.log("did not find cookie")
+        
+        // cookie.get()
         // send post request          http://localhost:4000/api/users/login/:email
         const response = await fetch('http://localhost:4000/api/users/login/' + this.username).
             then((res) => res.json()).
             then((data) => {
                 this.state.user = data[0]
                 //this.user = data[0]
+            
                 if (this.state.user.password === this.password) {
+                    
+                    cookie.set('User', this.state.user, {});
                     this.state.user = null;
                     console.log("Valid Login")
                     this.state.validLogin = true;
                     this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
-                    const cookie = new Cookies();
-                    cookie.set('', '', {});
+                    
                 }
                 else {
                     this.state.user = null;
@@ -77,7 +84,7 @@ export class NavBar extends React.Component {
                     <Container>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Navbar.Brand href="#home">B&B</Navbar.Brand>
+                            <Navbar.Brand href="/">B&B</Navbar.Brand>
                             <Nav className="me-auto" fill variant="tabs">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/about">About</Nav.Link>
