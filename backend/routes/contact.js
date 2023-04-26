@@ -2,8 +2,13 @@ const express = require('express')
 const router = express.Router()
 // const  createTransport = require('../controllers/contactController').default
 
-router.get('/', async(req,res) => {
+const app = express();
+const nodemailer = require('nodemailer');
+
+
+router.post('/', async (req, res) => { 
     const { name, email, message } = req.body;
+
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
