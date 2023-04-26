@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 //get all
 const getAllBookings = async (req,res) => {
     const booking = await bookingsTable.find({}).sort({createdate: -1})
-    res.status(200).json(rooms)
+    res.status(200).json(booking)
 }
 
 //get single
@@ -31,6 +31,7 @@ const createBooking = async(req,res) => {
         res.status(200).json(booking)
     }
     catch(error){
+        console.log(error.message)
         res.status(400).json({error: error.message})
     }
 }
