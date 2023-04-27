@@ -13,7 +13,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Home } from './pages/homePage';
-import  Login  from './pages/login'
+import { LoginPage } from './pages/loginPage'
 import { Rooms } from './components/rooms';
 import { About } from './components/about';
 import {Gallery} from './/components/gallery';
@@ -34,7 +34,7 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/login' element={<Login />}></Route>
+          <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/rooms' element={<Rooms />}></Route>
           <Route path='/about' element={<About />}></Route>
           <Route path='/gallery' element={<Gallery />}></Route>

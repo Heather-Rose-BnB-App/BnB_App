@@ -17,7 +17,6 @@ const BookingForm = () => {
     const [user,setUser] = useState('');
     const [rooms,setRooms] = useState('');
     const [userID,setUserID] = useState('');
-    const [roomID,setRoomID] = useState('');
     const [error, setError] = useState(null);
     const verb = NavBar.state;
     const cookie = new Cookies();
@@ -31,19 +30,12 @@ const BookingForm = () => {
             then((res) => res.json()).
             then((data) => {
                 let room = []
-                let roomHTML = []
                 // here we have the data available in the loop
-                console.log(data)
                 for(let i = 0;i < data.length;i++)
                 {
-                    // remove similar and store
-                    console.log("inside loop")
-                    if(!room.includes(data[i].type))
-                    {
-                        room.push(data[i].type)
-                    }
+                    room.push(data[i]._id,data[i].roomName +" - "+data[i].type)
                 }
-                console.log(room)
+                setRoomTypes(data[0].roomName +" - "+data[0].type)
                 setRooms(room)
             })
         };
@@ -52,22 +44,52 @@ const BookingForm = () => {
     //used for filling in the types of rooms based on the rooms from the database
     const Types = () => {
         let roomsHTML = []
-        for(let i=0;i< rooms.length;i++)
+        for(let i=1;i< rooms.length;i+=2)
         {
-            roomsHTML.push(<option key={i}>{rooms[i]}</option>)
+            roomsHTML.push(<option key={i-1} id="rooms">{rooms[i]}</option>)
         }
         return roomsHTML;
     }
+    const GetUser = async() => {
+        const response =  await fetch('http://localhost:4000/api/users/login/' + cookie.get('User').email,{
+            method: 'GET',
+            headers: {'Content-Type':'application/json','Accept': 'application/json, text/plain, */*'},
+        }).
+        then((res) => res.json()).
+        then((data) => {
+            return data[0]._id
+        })
+    };
+
     // submit event for the form 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // send the new booking off
-        const newBooking = {
-            userIDorEmail : "123",
-            roomID : "321",
-            dateFrom : checkInDate,
-            dateTo : checkOutDate
+        let id = rooms[rooms.indexOf(roomTypes)-1]
+        let userID = ''
+        let newBooking = '';
+        userID = cookie.get('User').id
+        if(cookie.get('User').valid === true)
+        {
+            
+            
+            newBooking = {
+                userIDorEmail : userID,
+                roomID : id,
+                dateFrom : checkInDate,
+                dateTo : checkOutDate
+            }
         }
+        else
+        {
+            
+            newBooking = {
+                userIDorEmail : email,
+                roomID : id,
+                dateFrom : checkInDate,
+                dateTo : checkOutDate
+            }
+        }
+        // send the new booking off
         console.log(JSON.stringify(newBooking));
         const SubmittingBookingDate = async() => {
             const response = await fetch('http://localhost:4000/api/bookings',{
@@ -144,7 +166,6 @@ const BookingForm = () => {
                     type="select"
                     placeholder="No. of Guests"
                     aria-label="guestNumber"
-                    maxLength='2'
                     required="yes"
                     value={roomTypes}
                     onChange={(e) => setRoomTypes(e.target.value)}>

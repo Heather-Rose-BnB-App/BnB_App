@@ -45,13 +45,7 @@ export class NavBar extends React.Component {
     async LoginUser(e) {
         
         const cookie = new Cookies();
-        var json;
         this.state.user = cookie.get('User')
-        if(this.state.user !== null)
-        {
-            console.log("Cookie still has user data")
-        }
-        else console.log("did not find cookie")
         
         // cookie.get()
         // send post request          http://localhost:4000/api/users/login/:email
@@ -63,6 +57,7 @@ export class NavBar extends React.Component {
                     // now we need to create a new object for the cookie
                     this.state.validLogin = true;
                     const cook = {
+                        id : this.state.user._id,
                         fName: this.state.user.firstName,
                         lName : this.state.user.lastName,
                         email: this.state.user.email,
@@ -71,7 +66,7 @@ export class NavBar extends React.Component {
                     }
                     this.state.user = null; // null the user so protect password
                     cookie.set('User', cook, {maxAge : 1200}); //set the cookies to only 2 hours.
-                    //this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
+                    this.forceUpdate(); // consoidered bad practice been needed to re render. so login component is changed
                 }
                 else {
                     this.state.user = null;
