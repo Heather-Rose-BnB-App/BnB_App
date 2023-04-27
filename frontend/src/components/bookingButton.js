@@ -8,8 +8,8 @@ export class BookingButton extends React.Component {
     render() {
         return (
             <div >
-                <Link to="/bookingPage">
-                    <Button href="/bookingPage">Book Now</Button>
+                <Link to="/bookingPage" className="booking-button">
+                    Book Now
                 </Link>
             </div>
         );

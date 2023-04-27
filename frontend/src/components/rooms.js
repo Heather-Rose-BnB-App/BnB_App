@@ -2,7 +2,7 @@ import React from "react";
 
 import './styles.css';
 import { BookingButton } from "./bookingButton";
-   
+import { Button } from 'react-bootstrap';
 
 
 
@@ -14,8 +14,7 @@ export class Rooms extends React.Component {
         return (
                      <div className="room-container">
                 <h1>Rooms</h1>
-                    <BookingButton></BookingButton>
-                    
+                <Button href="/bookingPage">Book Now</Button>
                 
                 <div className="room-gallery">
                     <div className="room-card">
