@@ -19,8 +19,9 @@ const schema = mongoose.Schema({
         type: Number,
         required: true
     },
-    bedTypes: {
-        type: Array,
+    roomName: {
+        type: String,
+        required: true
     },
     price: {
         type: Number,

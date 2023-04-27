@@ -23,9 +23,9 @@ export class NavBar extends React.Component {
         }
         if(cookie.get('User') != null)
         {
-            console.log(cookie.get('User'));
+            console.log(cookie.get('User').lName);
             this.state.user = cookie.get('User');
-            this.state.fullName = this.state.user.fName + " " + this.state.user.lName
+            this.state.fullName = cookie.get('User').fName + " " + cookie.get('User').lName
             this.state.validLogin = true;
         }
         else
@@ -43,7 +43,7 @@ export class NavBar extends React.Component {
         //console.log('username updated : ' + this.username)
     }
     async LoginUser(e) {
-        e.preventDefault()
+        
         const cookie = new Cookies();
         var json;
         this.state.user = cookie.get('User')

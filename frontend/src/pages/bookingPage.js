@@ -13,6 +13,7 @@ const BookingForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [roomTypes,setRoomTypes] = useState('');
     const [user,setUser] = useState('');
     const [rooms,setRooms] = useState('');
     const [userID,setUserID] = useState('');
@@ -20,33 +21,46 @@ const BookingForm = () => {
     const [error, setError] = useState(null);
     const verb = NavBar.state;
     const cookie = new Cookies();
-
+    // used for retreving the rooms data
     useEffect(()=> {
         const RoomsCall = async() => {
             const response =  await fetch('http://localhost:4000/api/rooms',{
                 method: 'GET',
                 headers: {'Content-Type':'application/json','Accept': 'application/json, text/plain, */*'},
             }).
-            then((res) => console.log(res.json())).
+            then((res) => res.json()).
             then((data) => {
-                setRooms(data)
+                let room = []
+                let roomHTML = []
+                // here we have the data available in the loop
+                console.log(data)
+                for(let i = 0;i < data.length;i++)
+                {
+                    // remove similar and store
+                    console.log("inside loop")
+                    if(!room.includes(data[i].type))
+                    {
+                        room.push(data[i].type)
+                    }
+                }
+                console.log(room)
+                setRooms(room)
             })
         };
         RoomsCall();
     },[])
-    // const GetRooms = () => {
-        
-    // }
-    // GetRooms();
-
+    //used for filling in the types of rooms based on the rooms from the database
+    const Types = () => {
+        let roomsHTML = []
+        for(let i=0;i< rooms.length;i++)
+        {
+            roomsHTML.push(<option key={i}>{rooms[i]}</option>)
+        }
+        return roomsHTML;
+    }
+    // submit event for the form 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        //get the curent user or assign the eamil to the id of the bookming
-
-        // get the rooms and assign the room id that have chosen.
-        
-
         // send the new booking off
         const newBooking = {
             userIDorEmail : "123",
@@ -79,19 +93,16 @@ const BookingForm = () => {
 
         alert('Booking submitted successfully! thank you for your booking! :)');
     };
-    const checkLogin = () => {
+    useEffect(()=> {
         if(cookie.get("User") != null)
         {
             console.log("User already logged in")
             setUser(cookie.get("User"))
-            setName(cookie.get("User").firstName + " " + cookie.get("User").lastName)
+            setName(cookie.get("User").fName + " " + cookie.get("User").lName)
             setEmail(cookie.get("User").email)
             setPhone(cookie.get("User").phone)
         }
-    }
-    
-    // if the user is logged in the fields will be auto generated.
-    // ;
+    },[])
 
     return(
         <Container className="createContainer">
@@ -135,9 +146,11 @@ const BookingForm = () => {
                     aria-label="guestNumber"
                     maxLength='2'
                     required="yes"
-                    value={numGuests}
-                    onChange={(e) => setNumGuests(e.target.value)}>
+                    value={roomTypes}
+                    onChange={(e) => setRoomTypes(e.target.value)}>
+                        {Types()}
                 </Form.Select>
+                
                 <Form.Label className="createLabel"> Name </Form.Label>
                 <Form.Control
                     className="createControl"

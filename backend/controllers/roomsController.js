@@ -23,11 +23,11 @@ const getSingleRoom = async (req,res) => {
 
 //create new
 const createRoom = async(req,res) => {
-    const {roomNo,type,maxNumberOfGuests,numberOfBeds,bedTypes,price,bookedDates} = req.body
+    const {roomNo,type,maxNumberOfGuests,numberOfBeds,roomName,price,bookedDates} = req.body
     //try to create a new table entry based on the schema and the data being sent
     //this will also send a 200 code if it succeeds and a 400 code if it fails
     try{
-        const rooms = await roomsTable.create({roomNo,type,maxNumberOfGuests,numberOfBeds,bedTypes,price,bookedDates})
+        const rooms = await roomsTable.create({roomNo,type,maxNumberOfGuests,numberOfBeds,roomName,price,bookedDates})
         res.status(200).json(rooms)
     }
     catch(error){
