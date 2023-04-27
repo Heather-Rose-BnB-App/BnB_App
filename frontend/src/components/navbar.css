@@ -18,4 +18,9 @@
     top: 0px;
     background-color: #fff;
     z-index: 9999;
+    font-weight: bold;
+}
+.navbar-brand {
+    color: maroon;
+    /* Replace with the color of your choice */
 }

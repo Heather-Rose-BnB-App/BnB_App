@@ -115,27 +115,29 @@ export class NavBar extends React.Component {
                     <Container>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Navbar.Brand href="/">B&B</Navbar.Brand>
+                            <Navbar.Brand className="navbar-brand" href="/">B&B</Navbar.Brand>
                             <Nav className="me-auto" fill variant="tabs">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/about">About</Nav.Link>
                                 <Nav.Link href="/rooms">Rooms</Nav.Link>
                                 <Nav.Link href="/gallery">Gallery</Nav.Link>
-                                <Nav.Link href="/todo">Things to do</Nav.Link>
-                                <NavDropdown title="More" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Policy</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="/contactPage">
-                                        Contact
-                                    </NavDropdown.Item>
-                                </NavDropdown>
+                                <Nav.Link href="/contactPage">Contact</Nav.Link>
                             </Nav>
                             {this.state.validLogin ? 'Welcome ' + this.state.fullName : login} {/* refactored this to use the condition on the statement, HTML can be a let variable  */}
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             );
+            //conmmented out stuff in navbar
+        // <NavDropdown title="More" id="basic-nav-dropdown">
+        //     <NavDropdown.Item href="#action/3.1">Policy</NavDropdown.Item>
+        //     <NavDropdown.Divider />
+        //     <NavDropdown.Item href="/contactPage">
+        //         Contact
+        //     </NavDropdown.Item>
+        // </NavDropdown>
         // }
+
         // else {
         //     return (
         //         <Navbar bg="light" expand="sm" className="fixed-top">
