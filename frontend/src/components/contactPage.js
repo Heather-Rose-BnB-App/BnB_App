@@ -32,18 +32,27 @@ export class ContactPage extends React.Component {
         // Make API call to send contact form data
         axios.post('http://localhost:4000/api/contact', { name, email, message })
             .then((response) => {
-                // Handle success, e.g. show success message, reset form, etc.
 
                 console.log('Form submission successful:', response);
+                this.setState({ success: true, error: '' });
             })
             .catch((error) => {
-                // Handle error, e.g. show error message, etc.
+                // Handle error
                 console.error('Form submission failed:', error);
+                this.setState({ error: 'An error occurred. Please try again later.' });
             });
     }
 
     render() {
         const { name, email, message, error } = this.state;
+        if (this.state.success) {
+            return (
+                <div className="contact-container">
+                    <h1>Thank you!</h1>
+                    <p>Your message has been sent successfully.</p>
+                </div>
+            );
+        }
         return (
             <div className="contact-container">
                 <h1>Contact Us</h1>
