@@ -53,7 +53,7 @@ export class NavBar extends React.Component {
             then((res) => res.json()).
             then((data) => {
                 this.state.user = data[0]
-                if (this.state.user.password === this.password) {
+                if (this.state.user.password === this.state.password) {
                     // now we need to create a new object for the cookie
                     this.state.validLogin = true;
                     const cook = {
