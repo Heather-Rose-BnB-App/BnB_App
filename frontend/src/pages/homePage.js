@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { HomeCarousel } from '../components/homeCarousel';
 import { Map } from "../components/map";
+import {Button} from 'react-bootstrap';
 
 export class Home extends React.Component {
     render() {
@@ -14,6 +15,7 @@ export class Home extends React.Component {
             <div>
                 <HomeCarousel></HomeCarousel>
                 <br/>
+                <Button href="/bookingPage">Book Now</Button>
                 <br />
                 <Card className="m-5 border-0 shadow" >
                     <Row className="row">
