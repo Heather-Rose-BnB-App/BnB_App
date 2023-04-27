@@ -1,21 +1,23 @@
 import React from "react";
-import Carousel from 'react-bootstrap/Carousel';
 import './styles.css';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { HomeCarousel } from '../components/homeCarousel';
 import { Map } from "../components/map";
 import {Button} from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 
 export class Home extends React.Component {
     render() {
+        const cookie = new Cookies();
+        let b1 = <Button href="/bookingPage">Book Now</Button>
+        let b2 = <Button href="/login">Book Now</Button>
         return (
             <div>
                 <HomeCarousel></HomeCarousel>
                 <br/>
-                <Button href="/bookingPage">Book Now</Button>
+                {cookie.get("User") ? b1 : b2}
                 <br />
                 <Card className="m-5 border-0 shadow" >
                     <Row className="row">

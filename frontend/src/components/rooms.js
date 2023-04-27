@@ -3,18 +3,22 @@ import React from "react";
 import './styles.css';
 import { BookingButton } from "./bookingButton";
 import { Button } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 
 
 
 export class Rooms extends React.Component {
 
     render() {
-  
+        const cookie = new Cookies();
+        let b1 = <Button href="/bookingPage">Book Now</Button>
+        let b2 = <Button href="/login">Book Now</Button>
 
         return (
                      <div className="room-container">
                 <h1>Rooms</h1>
-                <Button href="/bookingPage">Book Now</Button>
+                {cookie.get("User") ? b1 : b2}
+                {/* <Button href="/bookingPage">Book Now</Button> */}
                 
                 <div className="room-gallery">
                     <div className="room-card">
