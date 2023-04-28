@@ -6,10 +6,11 @@ import { Button } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 
 
-
+// rooms component
 export class Rooms extends React.Component {
 
     render() {
+        // cookie reference and creating 2 button elements
         const cookie = new Cookies();
         let b1 = <Button href="/bookingPage">Book Now</Button>
         let b2 = <Button href="/login">Book Now</Button>
@@ -17,8 +18,8 @@ export class Rooms extends React.Component {
         return (
                      <div className="room-container">
                 <h1>Rooms</h1>
-                {cookie.get("User") ? b1 : b2}
-                {/* <Button href="/bookingPage">Book Now</Button> */}
+                {cookie.get("User") ? b1 : b2 } 
+                {/* inline if else statement for the buttons based on if the user is logged in*/}
                 
                 <div className="room-gallery">
                     <div className="room-card">

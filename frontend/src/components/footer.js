@@ -1,6 +1,7 @@
 import React from "react";
 import * as Icon from 'react-bootstrap-icons';
 
+// footer component that is set to the bottom of the app
 export class Footer extends React.Component{
     render(){
         return (

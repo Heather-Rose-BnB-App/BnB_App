@@ -4,7 +4,7 @@ import './styles.css';
 
 
 
-
+//galary page component
 export class Gallery extends React.Component {
     state = {
         selectedImage: null

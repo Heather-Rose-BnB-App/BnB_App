@@ -8,8 +8,10 @@ import { Map } from "../components/map";
 import {Button} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 
+//homepage
 export class Home extends React.Component {
     render() {
+        // get cookie and create button elements
         const cookie = new Cookies();
         let b1 = <Button href="/bookingPage">Book Now</Button>
         let b2 = <Button href="/login">Book Now</Button>

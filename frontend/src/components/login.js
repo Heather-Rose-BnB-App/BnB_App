@@ -4,12 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Cookies from 'universal-cookie';
 
+//login component
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [validLogin, setValidLogin] = useState('');
     const cookie = new Cookies();
-
+    // use effect to look for the cookie
     useEffect(() => {
         const checkCookie = () => {
             if(cookie.get("User"))
@@ -17,7 +18,7 @@ const Login = () => {
         }
         checkCookie();
     })
-
+    // event for logging the user in
     const LoginUser = (event) => {
         event.preventDefault()
         const getUsers = async() => {
@@ -36,18 +37,20 @@ const Login = () => {
                         phone: data[0].mobile,
                         valid: true
                     }
+                    // set the cookie
                     cookie.set('User', cook, {maxAge : 1200}); //set the cookies to only 2 hours.
                 }
                 else {
+                    //set is valid for the if statement on the render
                     setValidLogin(false)
                 }
             }).
             catch((err) => console.log(err))
         }
         getUsers();
-        // send post request          http://localhost:4000/api/users/login/:email
-    };
 
+    };
+    //if for the render
     if(!validLogin === true)
     {
         return(

@@ -2,7 +2,7 @@ import React from "react";
 import './styles.css';
 
 
-
+// rending component for the about page
 export class About extends React.Component {
 
 

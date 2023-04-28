@@ -22,15 +22,18 @@ const BookingForm = () => {
     const verb = NavBar.state;
     const cookie = new Cookies();
 
+    // method for validating number of guests
     const numOfGuestCheck = (event) => {
          let num = event.target.value
          if(num < 0) num = 0
          else if(num > 0) num = 2
          setNumGuests(num)
     }
-    // used for retreving the rooms data
+    // used for retrieving the rooms data
     useEffect(()=> {
+        // setting guest number to 1 by default
         setNumGuests(1)
+        //getting all the rooms
         const RoomsCall = async() => {
             const response =  await fetch('http://localhost:4000/api/rooms',{
                 method: 'GET',
@@ -39,7 +42,7 @@ const BookingForm = () => {
             then((res) => res.json()).
             then((data) => {
                 let room = []
-                // here we have the data available in the loop
+                // creating new value for the room types composed of the room name and what beds are in it
                 for(let i = 0;i < data.length;i++)
                 {
                     room.push(data[i]._id,data[i].roomName +" - "+data[i].type)
@@ -53,12 +56,14 @@ const BookingForm = () => {
     //used for filling in the types of rooms based on the rooms from the database
     const Types = () => {
         let roomsHTML = []
+        //used for creating html for the options list in the render
         for(let i=1;i< rooms.length;i+=2)
         {
             roomsHTML.push(<option key={i-1} id="rooms">{rooms[i]}</option>)
         }
         return roomsHTML;
     }
+    // get user api call for the user id when assigning it to the booking
     const GetUser = async() => {
         const response =  await fetch('http://localhost:4000/api/users/login/' + cookie.get('User').email,{
             method: 'GET',
@@ -89,6 +94,7 @@ const BookingForm = () => {
         }
         else if(date1 < date2 && date1 >= now) // condition if dates are valid
         {
+            // check if the cookie is already valid and if so set some data for auto filled fields
             if(cookie.get('User').valid === true)
             {
                 newBooking = {
@@ -99,7 +105,7 @@ const BookingForm = () => {
                 }
             }
             else
-            {
+            { // if the user is on the booking page with no login
                 newBooking = {
                     userIDorEmail : email,
                     roomID : id,
@@ -115,7 +121,7 @@ const BookingForm = () => {
                         body: JSON.stringify(newBooking)
                     })
                 const json = response.json;
-                console.log(json);
+                // console.log(json);
                 // validate the response
                 if(!response.ok){
                     setError(json.error)
@@ -132,7 +138,7 @@ const BookingForm = () => {
         }
         
 
-        
+        // useeffect for getting cookie information and setting it if the user is logged in
     useEffect(()=> {
         if(cookie.get("User") != null)
         {
@@ -143,7 +149,7 @@ const BookingForm = () => {
             setPhone(cookie.get("User").phone)
         }
     },[])
-
+// render
     return(
         <Container className="createContainer">
             <Form className="createForm" onSubmit={handleSubmit}>

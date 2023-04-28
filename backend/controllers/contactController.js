@@ -1,4 +1,4 @@
-
+// * * * * * * * * moved to routes folder
 // Import necessary libraries
 // const express = require('express');
 // const bodyParser = require('body-parser');

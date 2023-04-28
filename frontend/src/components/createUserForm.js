@@ -31,13 +31,12 @@ const CreateNewUserForm = () => {
                 body: JSON.stringify(newUser)
             })
             const json = response.json;
-            console.log(json);
-
+            // check responce
             if(!response.ok){
                 setError(json.error)
                 console.log("an error has happened : " + json.error)
             }
-            else if(response.ok)
+            else if(response.ok)  //reset values on the form to empty on creating account
             {
                 setFirstName('')
                 setLastName('')
@@ -52,8 +51,8 @@ const CreateNewUserForm = () => {
             }
         }
         SubmittingDate();
-        
     }
+    // if on the render loop to make it display different after account has been created
     if(newAccountCreated !== 'true')
     {
         return(

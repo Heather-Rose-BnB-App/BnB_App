@@ -25,12 +25,13 @@ import { BookingPage } from './pages/bookingPage';
 import { ContactPage } from './components/contactPage'
 //import NewNavBar from './components/nav';
 
+// main app entry point
 function App() {
   return (
     <Router>
       <div className="App">
         <Header></Header>
-        {/* <NewNavBar></NewNavBar> */}
+        {/* navbar and its routes*/}
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Home />}></Route>

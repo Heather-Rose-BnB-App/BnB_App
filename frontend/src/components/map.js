@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.css';
-
+// maps component
 export class Map extends React.Component {
 
 

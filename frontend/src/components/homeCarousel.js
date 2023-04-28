@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import './styles.css';
 import { Button } from "bootstrap";
 
+//carousel component
 export class HomeCarousel extends React.Component {
     render() {
         return (

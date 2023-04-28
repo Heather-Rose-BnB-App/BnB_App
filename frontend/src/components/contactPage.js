@@ -13,12 +13,13 @@ export class ContactPage extends React.Component {
             error: ''
         };
     }
-
+    // handle input change method so values are updated
     handleInputChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
 
+    // handle submit event that is fired when user presses submit
     handleSubmit = (event) => {
         event.preventDefault();
         const { name, email, message } = this.state;
@@ -42,7 +43,7 @@ export class ContactPage extends React.Component {
                 this.setState({ error: 'An error occurred. Please try again later.' });
             });
     }
-
+    // render for this element
     render() {
         const { name, email, message, error } = this.state;
         if (this.state.success) {
