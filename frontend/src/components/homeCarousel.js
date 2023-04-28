@@ -14,8 +14,8 @@ export class HomeCarousel extends React.Component {
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                       
+                        <p>Experience the beauty of Caheroyan House and Farm with our stunning views and peaceful surroundings</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={500}>
@@ -25,8 +25,8 @@ export class HomeCarousel extends React.Component {
                         alt="Second slide"
                     />
                     <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        
+                        <p>Relax and unwind in our comfortable and inviting guest rooms, complete with modern amenities</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -36,9 +36,9 @@ export class HomeCarousel extends React.Component {
                         alt="Third slide"
                     />
                     <Carousel.Caption>
-                        <h3>Third slide label</h3>
+                        
                         <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                            Book your stay at Caheroyan House and Farm today and start planning your unforgettable Irish getaway
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>
