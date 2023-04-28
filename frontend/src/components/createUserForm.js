@@ -110,7 +110,7 @@ const CreateNewUserForm = () => {
                         type="number"
                         placeholder="08* *******"
                         aria-label="password"
-                        minLength='9'
+                        minLength={9}
                         maxLength='15'
                         required="yes"
                         value={mobile}
