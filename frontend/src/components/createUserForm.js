@@ -98,6 +98,7 @@ const CreateNewUserForm = () => {
                         type="password"
                         placeholder="password"
                         aria-label="password"
+                        minLength='8'
                         maxLength='40'
                         required="yes"
                         value={password}
@@ -106,9 +107,10 @@ const CreateNewUserForm = () => {
                     <Form.Label className="createLabel"> Contact Number </Form.Label>
                     <Form.Control
                         className="createControl"
-                        type=""
+                        type="number"
                         placeholder="08* *******"
                         aria-label="password"
+                        minLength='9'
                         maxLength='15'
                         required="yes"
                         value={mobile}

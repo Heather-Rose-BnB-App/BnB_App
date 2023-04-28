@@ -28,7 +28,7 @@ export class Footer extends React.Component{
                 <section className="">
                     <div className="footerRow align-items-start">
                         <div className="col">
-                            <h5 className="text-uppercase">Links</h5>   
+                            <h5 className="text-uppercase">Accounts</h5>   
                             <ul className="list-unstyled">
                                  <li>
                                     <a href="/" className="text-white">Home</a>
@@ -37,44 +37,29 @@ export class Footer extends React.Component{
                                     <a href="CreateNewAccount" className="text-white">Create User</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 3</a>
-                                </li>
-                                <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="login" className="text-white">Login</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="col">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5 className="text-uppercase">Site Map</h5>
                             <ul className="list-unstyled">
                                 <li>
                                     <a href="/rooms" className="text-white">Rooms</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
-                                </li>
-                                <li>
-                                    <a href="#!" className="text-white">Link 3</a>
-                                </li>
-                                <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="/gallery" className="text-white">Gallery</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="col">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5 className="text-uppercase">About</h5>
                             <ul className="list-unstyled">
                                  <li>
                                     <a href="/about" className="text-white">About</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
-                                </li>
-                                <li>
-                                    <a href="#!" className="text-white">Link 3</a>
-                                </li>
-                                <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="/contactPage" className="text-white">Contact Us</a>
                                 </li>
                             </ul>
                         </div>
