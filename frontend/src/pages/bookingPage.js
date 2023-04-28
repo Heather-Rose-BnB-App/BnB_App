@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Cookies from "universal-cookie";
 
+
 const BookingForm = () => {
     const [checkInDate, setCheckInDate] = useState('');
     const [checkOutDate, setCheckOutDate] = useState('');
@@ -20,8 +21,16 @@ const BookingForm = () => {
     const [error, setError] = useState(null);
     const verb = NavBar.state;
     const cookie = new Cookies();
+
+    const numOfGuestCheck = (event) => {
+         let num = event.target.value
+         if(num < 0) num = 0
+         else if(num > 0) num = 2
+         setNumGuests(num)
+    }
     // used for retreving the rooms data
     useEffect(()=> {
+        setNumGuests(1)
         const RoomsCall = async() => {
             const response =  await fetch('http://localhost:4000/api/rooms',{
                 method: 'GET',
@@ -68,53 +77,62 @@ const BookingForm = () => {
         let userID = ''
         let newBooking = '';
         userID = cookie.get('User').id
-        if(cookie.get('User').valid === true)
-        {
-            
-            
-            newBooking = {
-                userIDorEmail : userID,
-                roomID : id,
-                dateFrom : checkInDate,
-                dateTo : checkOutDate
-            }
-        }
-        else
-        {
-            
-            newBooking = {
-                userIDorEmail : email,
-                roomID : id,
-                dateFrom : checkInDate,
-                dateTo : checkOutDate
-            }
-        }
-        // send the new booking off
-        console.log(JSON.stringify(newBooking));
-        const SubmittingBookingDate = async() => {
-            const response = await fetch('http://localhost:4000/api/bookings',{
-                    method: 'POST',
-                    headers: {'Content-Type':'application/json','Accept': 'application/json, text/plain, */*',},
-                    body: JSON.stringify(newBooking)
-                })
-            const json = response.json;
-            console.log(json);
-            // validate the response
-            if(!response.ok){
-                setError(json.error)
-                console.log("an error has happened : " + json.error)
-            }
-            else if(response.ok)
-            {
-                console.log(json._id)
-            }
-        }
-        SubmittingBookingDate()
 
+        // validate dates
+        let date1 = new Date(checkInDate)
+        let date2 = new Date(checkOutDate);
+        let now = new Date();
+        if(date1 > date2 || date1 < now) // invalid dates
+        {
+            console.log("Invalid dates")
+            alert('Invalid booking dates - check-in must be before check-out');
+        }
+        else if(date1 < date2 && date1 >= now) // condition if dates are valid
+        {
+            if(cookie.get('User').valid === true)
+            {
+                newBooking = {
+                    userIDorEmail : userID,
+                    roomID : id,
+                    dateFrom : checkInDate,
+                    dateTo : checkOutDate
+                }
+            }
+            else
+            {
+                newBooking = {
+                    userIDorEmail : email,
+                    roomID : id,
+                    dateFrom : checkInDate,
+                    dateTo : checkOutDate
+                }
+            }
+            // send the new booking off
+            const SubmittingBookingDate = async() => {
+                const response = await fetch('http://localhost:4000/api/bookings',{
+                        method: 'POST',
+                        headers: {'Content-Type':'application/json','Accept': 'application/json, text/plain, */*',},
+                        body: JSON.stringify(newBooking)
+                    })
+                const json = response.json;
+                console.log(json);
+                // validate the response
+                if(!response.ok){
+                    setError(json.error)
+                    console.log("an error has happened : " + json.error)
+                }
+                else if(response.ok)
+                {
+                    console.log(json._id)
+                    alert('Booking submitted successfully! Thank you for your booking!');
+                }
+            }
+            SubmittingBookingDate()
+        };
+        }
         
 
-        alert('Booking submitted successfully! thank you for your booking! :)');
-    };
+        
     useEffect(()=> {
         if(cookie.get("User") != null)
         {
@@ -135,22 +153,24 @@ const BookingForm = () => {
                     type="date"
                     placeholder="Check-in Date"
                     aria-label="checkinDate"
+                    min={new Date().toISOString().split("T")[0]}
                     required="yes"
                     value={checkInDate}
                     onChange={(e) => setCheckInDate(e.target.value)}
                 />
-                <Form.Label className="createLabel"> checkOutDate </Form.Label>
+                <Form.Label className="createLabel"> Check-out Date </Form.Label>
                 <Form.Control
                     className="createControl"
                     type="date"
                     placeholder="CheckOut Date"
                     aria-label="checkOutDate"
+                    min={checkInDate}
                     required="yes"
                     value={checkOutDate}
                     onChange={(e) => setCheckOutDate(e.target.value)}
                 />
                 <Form.Label className="createLabel"> Number of Guests </Form.Label>
-                <Form.Control
+                <Form.Select
                     className="createControl"
                     type="number"
                     placeholder="No. of Guests"
@@ -158,8 +178,10 @@ const BookingForm = () => {
                     maxLength='2'
                     required="yes"
                     value={numGuests}
-                    onChange={(e) => setNumGuests(e.target.value)}
-                />
+                    onChange={(e) => numOfGuestCheck(e)}>
+                        <option>1</option>
+                        <option>2</option>
+                </Form.Select>
                 <Form.Label className="createLabel"> Room Type </Form.Label>
                 <Form.Select
                     className="createControl"
@@ -205,6 +227,8 @@ const BookingForm = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                 />
+                
+                
                 <Button className="outline-success" type='submit'>Submit</Button>
             </Form>
         </Container>
